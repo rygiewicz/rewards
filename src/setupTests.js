@@ -10,3 +10,7 @@ fetchMock.enableMocks();
 beforeEach(() => {
   fetch.resetMocks();
 });
+
+afterEach(() => {
+  jest.restoreAllMocks();
+});

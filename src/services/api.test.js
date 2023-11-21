@@ -1,4 +1,4 @@
-import { createApiService } from './apiService';
+import { createApiService } from './api';
 
 const apiService = createApiService();
 
