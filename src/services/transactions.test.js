@@ -1,4 +1,9 @@
-import { transactionListMock } from '../mocks/transactions';
+import {
+  invalidTransactionListResponseMock,
+  emptyTransactionListMock,
+  transactionListMock,
+  transactionListResponseMock,
+} from '../mocks/transactions';
 import { createApiService } from './api';
 import { createTransactionsService } from './transactions';
 
@@ -27,10 +32,23 @@ describe('TransactionsService getTransactionsLatest3Months', () => {
     expect(search.get('date_to')).toEqual(expectedTo);
   });
 
-  it('returns a list of transactions', async () => {
+  it('returns a list of transactions when api response valid', async () => {
+    const responseJson = JSON.stringify(transactionListResponseMock);
     const expectedJson = JSON.stringify(transactionListMock);
 
-    fetchMock.mockResponseOnce(expectedJson);
+    fetchMock.mockResponseOnce(responseJson);
+
+    const result = await transactionsService.getTransactionsLatest3Months();
+
+    expect(JSON.stringify(result.data)).toEqual(expectedJson);
+    expect(result.error).toEqual(null);
+  });
+
+  it('returns an empty list of transactions when api response invalid', async () => {
+    const responseJson = JSON.stringify(invalidTransactionListResponseMock);
+    const expectedJson = JSON.stringify(emptyTransactionListMock);
+
+    fetchMock.mockResponseOnce(responseJson);
 
     const result = await transactionsService.getTransactionsLatest3Months();
 

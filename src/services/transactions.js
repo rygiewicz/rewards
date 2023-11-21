@@ -1,10 +1,17 @@
+import { adaptTransactionList } from '../adapters/transactions';
+
 export function createTransactionsService(apiService) {
   const service = {};
 
-  service.getTransactions = (filters) => {
+  service.getTransactions = async (filters) => {
     const params = new URLSearchParams(filters);
 
-    return apiService.get(`/transactions?${params}`);
+    const response = await apiService.get(`/transactions?${params}`);
+
+    return {
+      ...response,
+      data: adaptTransactionList(response.data),
+    };
   };
 
   service.getTransactionsLatest3Months = async () => {

@@ -1,68 +1,154 @@
+export const transactionListResponseMock = [
+  {
+    date: '2023-09-11T00:00:00.000Z',
+    amount: '22',
+  },
+  {
+    date: '2023-09-18T00:00:00.000Z',
+    amount: '55',
+  },
+  {
+    date: '2023-09-22T00:00:00.000Z',
+    amount: '78',
+  },
+  {
+    date: '2023-09-29T00:00:00.000Z',
+    amount: '122',
+  },
+  {
+    date: '2023-10-01T00:00:00.000Z',
+    amount: '300',
+  },
+  {
+    date: '2023-10-10T00:00:00.000Z',
+    amount: '99',
+  },
+  {
+    date: '2023-10-15T00:00:00.000Z',
+    amount: '50',
+  },
+  {
+    date: '2023-10-19T00:00:00.000Z',
+    amount: '450',
+  },
+  {
+    date: '2023-10-24T00:00:00.000Z',
+    amount: '711',
+  },
+  {
+    date: '2023-11-02T00:00:00.000Z',
+    amount: '60',
+  },
+  {
+    date: '2023-10-09T00:00:00.000Z',
+    amount: '77',
+  },
+  {
+    date: '2023-10-13T00:00:00.000Z',
+    amount: '532',
+  },
+  {
+    date: '2023-10-21T00:00:00.000Z',
+    amount: '156',
+  },
+  {
+    date: '2023-10-25T00:00:00.000Z',
+    amount: '206',
+  },
+  {
+    date: '2023-10-26T00:00:00.000Z',
+    amount: '7',
+  },
+  {
+    date: '2023-10-30T00:00:00.000Z',
+    amount: '87',
+  },
+];
+
+export const invalidTransactionListResponseMock = [
+  {
+    date: 'last Monday',
+    amount: 700,
+  },
+  {
+    date: false,
+    amount: -9,
+  },
+  {
+    date: 77,
+    amount: null,
+  },
+];
+
 export const transactionListMock = {
   transactions: [
     {
-      date: "2023-09-11",
+      day: '2023-09-11',
       amount: '22',
     },
     {
-      date: "2023-09-18",
+      day: '2023-09-18',
       amount: '55',
     },
     {
-      date: "2023-09-22",
+      day: '2023-09-22',
       amount: '78',
     },
     {
-      date: "2023-09-29",
+      day: '2023-09-29',
       amount: '122',
     },
     {
-      date: "2023-10-01",
+      day: '2023-10-01',
       amount: '300',
     },
     {
-      date: "2023-10-10",
+      day: '2023-10-10',
       amount: '99',
     },
     {
-      date: "2023-10-15",
+      day: '2023-10-15',
       amount: '50',
     },
     {
-      date: "2023-10-19",
+      day: '2023-10-19',
       amount: '450',
     },
     {
-      date: "2023-10-24",
+      day: '2023-10-24',
       amount: '711',
     },
     {
-      date: "2023-11-02",
+      day: '2023-11-02',
       amount: '60',
     },
     {
-      date: "2023-10-09",
+      day: '2023-10-09',
       amount: '77',
     },
     {
-      date: "2023-10-13",
+      day: '2023-10-13',
       amount: '532',
     },
     {
-      date: "2023-10-21",
+      day: '2023-10-21',
       amount: '156',
     },
     {
-      date: "2023-10-25",
+      day: '2023-10-25',
       amount: '206',
     },
     {
-      date: "2023-10-26",
+      day: '2023-10-26',
       amount: '7',
     },
     {
-      date: "2023-10-30",
+      day: '2023-10-30',
       amount: '87',
     },
   ],
+};
+
+export const emptyTransactionListMock = {
+  transactions: [],
 };
