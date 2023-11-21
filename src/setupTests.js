@@ -7,6 +7,16 @@ import fetchMock from 'jest-fetch-mock';
 
 fetchMock.enableMocks();
 
+global.delayedResponse = (body) => {
+  return () => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve({ body });
+      });
+    });
+  };
+};
+
 beforeEach(() => {
   fetch.resetMocks();
 });

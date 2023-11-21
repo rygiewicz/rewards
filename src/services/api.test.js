@@ -36,6 +36,23 @@ describe('ApiService get', () => {
     expect(result.error.message).toEqual(expectedMessage);
   });
 
+  it('allows aborting a request', async () => {
+    const expectedCode = apiService.defaultErrorCode;
+    const expectedMessage = apiService.defaultErrorMessage;
+
+    fetch.mockResponseOnce(delayedResponse('{}'));
+
+    const abortController = new AbortController();
+    const promise = apiService.get('/some-path', { signal: abortController.signal });
+    abortController.abort();
+
+    const result = await promise;
+
+    expect(result.data).toEqual(null);
+    expect(result.error.code).toEqual(expectedCode);
+    expect(result.error.message).toEqual(expectedMessage);
+  });
+
   it('returns correct error and data when http error', async () => {
     const expectedCode = 500;
     const expectedMessage = apiService.defaultErrorMessage;

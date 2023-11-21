@@ -4,9 +4,9 @@ export function createApiService() {
   service.defaultErrorMessage = 'Error';
   service.defaultErrorCode = 0;
 
-  service.get = async (input) => {
+  service.get = async (input, init) => {
     try {
-      const response = await fetch(input);
+      const response = await fetch(input, init);
 
       service.checkHttpError(response);
 
