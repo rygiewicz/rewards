@@ -14,52 +14,52 @@ const pointsService = createPointsService(transactionsService);
 
 describe('PointsService getPointsLatest3Months', () => {
   it('returns a list of transaction points when api response valid', async () => {
-    const responseJson = JSON.stringify(transactionListResponseMock);
-    const expectedJson = JSON.stringify(pointListMock);
+    const responseJson = transactionListResponseMock;
+    const expectedJson = pointListMock;
 
-    fetchMock.mockResponseOnce(responseJson);
+    fetchMock.mockResponseOnce(JSON.stringify(responseJson));
 
     const result = await pointsService.getPointsLatest3Months();
 
-    expect(JSON.stringify(result.data)).toEqual(expectedJson);
+    expect(result.data).toEqual(expectedJson);
     expect(result.error).toEqual(null);
   });
 
   it('returns an empty list of transaction points when api response invalid', async () => {
-    const responseJson = JSON.stringify(invalidTransactionListResponseMock);
-    const expectedJson = JSON.stringify(emptyTransactionListMock);
+    const responseJson = invalidTransactionListResponseMock;
+    const expectedJson = emptyTransactionListMock;
 
-    fetchMock.mockResponseOnce(responseJson);
+    fetchMock.mockResponseOnce(JSON.stringify(responseJson));
 
     const result = await pointsService.getPointsLatest3Months();
 
-    expect(JSON.stringify(result.data)).toEqual(expectedJson);
+    expect(result.data).toEqual(expectedJson);
     expect(result.error).toEqual(null);
   });
 });
 
 describe('PointsService getMonthlyPointsLatest3Months', () => {
   it('returns a list of monthly points when api response valid', async () => {
-    const responseJson = JSON.stringify(transactionListResponseMock);
-    const expectedJson = JSON.stringify(monthlyPointsMock);
+    const responseJson = transactionListResponseMock;
+    const expectedJson = monthlyPointsMock;
 
-    fetchMock.mockResponseOnce(responseJson);
+    fetchMock.mockResponseOnce(JSON.stringify(responseJson));
 
     const result = await pointsService.getMonthlyPointsLatest3Months();
 
-    expect(JSON.stringify(result.data)).toEqual(expectedJson);
+    expect(result.data).toEqual(expectedJson);
     expect(result.error).toEqual(null);
   });
 
   it('returns an empty list of monthly points when api response invalid', async () => {
-    const responseJson = JSON.stringify(invalidTransactionListResponseMock);
-    const expectedJson = JSON.stringify(emptyMonthlyPointsMock);
+    const responseJson = invalidTransactionListResponseMock;
+    const expectedJson = emptyMonthlyPointsMock;
 
-    fetchMock.mockResponseOnce(responseJson);
+    fetchMock.mockResponseOnce(JSON.stringify(responseJson));
 
     const result = await pointsService.getMonthlyPointsLatest3Months();
 
-    expect(JSON.stringify(result.data)).toEqual(expectedJson);
+    expect(result.data).toEqual(expectedJson);
     expect(result.error).toEqual(null);
   });
 });

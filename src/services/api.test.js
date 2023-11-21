@@ -81,13 +81,13 @@ describe('ApiService get', () => {
   });
 
   it('returns correct error and data when success', async () => {
-    const expectedJson = JSON.stringify({ name: 'John', age: 55 });
+    const expectedJson = { name: 'John', age: 55 };
 
-    fetchMock.mockResponseOnce(expectedJson);
+    fetchMock.mockResponseOnce(JSON.stringify(expectedJson));
 
     const result = await apiService.get('/some-path');
 
-    expect(JSON.stringify(result.data)).toEqual(expectedJson);
+    expect(result.data).toEqual(expectedJson);
     expect(result.error).toEqual(null);
   });
 });

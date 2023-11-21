@@ -33,26 +33,26 @@ describe('TransactionsService getTransactionsLatest3Months', () => {
   });
 
   it('returns a list of transactions when api response valid', async () => {
-    const responseJson = JSON.stringify(transactionListResponseMock);
-    const expectedJson = JSON.stringify(transactionListMock);
+    const responseJson = transactionListResponseMock;
+    const expectedJson = transactionListMock;
 
-    fetchMock.mockResponseOnce(responseJson);
+    fetchMock.mockResponseOnce(JSON.stringify(responseJson));
 
     const result = await transactionsService.getTransactionsLatest3Months();
 
-    expect(JSON.stringify(result.data)).toEqual(expectedJson);
+    expect(result.data).toEqual(expectedJson);
     expect(result.error).toEqual(null);
   });
 
   it('returns an empty list of transactions when api response invalid', async () => {
-    const responseJson = JSON.stringify(invalidTransactionListResponseMock);
-    const expectedJson = JSON.stringify(emptyTransactionListMock);
+    const responseJson = invalidTransactionListResponseMock;
+    const expectedJson = emptyTransactionListMock;
 
-    fetchMock.mockResponseOnce(responseJson);
+    fetchMock.mockResponseOnce(JSON.stringify(responseJson));
 
     const result = await transactionsService.getTransactionsLatest3Months();
 
-    expect(JSON.stringify(result.data)).toEqual(expectedJson);
+    expect(result.data).toEqual(expectedJson);
     expect(result.error).toEqual(null);
   });
 });
