@@ -31,5 +31,21 @@ export function adaptTransactionList(data) {
     });
   });
 
+  sortByDay(result.transactions);
+
   return result;
+}
+
+function sortByDay(transactions) {
+  transactions.sort((a, b) => {
+    if (a.day > b.day) {
+      return 1;
+    }
+
+    if (b.day > a.day) {
+      return -1;
+    }
+
+    return 0;
+  });
 }
