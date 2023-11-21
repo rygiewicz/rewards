@@ -25,7 +25,8 @@ export function adaptMonthlyPointList(data) {
   let currentPoints = 0;
   let totalPoints = 0;
 
-  data.transactions.forEach((item) => {
+  data.transactions.forEach((item, index) => {
+    const isLast = index === data.transactions.length - 1;
     const month = item.day.slice(0, 7);
 
     if (!currentMonth) {
@@ -44,11 +45,13 @@ export function adaptMonthlyPointList(data) {
 
     currentPoints += item.points;
     totalPoints += item.points;
-  });
 
-  result.transactions.push({
-    month: currentMonth,
-    points: currentPoints,
+    if (isLast) {
+      result.transactions.push({
+        month: currentMonth,
+        points: currentPoints,
+      });
+    }
   });
 
   result.totalPoints = totalPoints;

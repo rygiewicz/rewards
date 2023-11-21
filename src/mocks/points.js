@@ -100,3 +100,12 @@ export const monthlyPointsMock = {
   ],
   totalPoints: 4060,
 };
+
+export const emptyPointListMock = {
+  transactions: [],
+};
+
+export const emptyMonthlyPointsMock = {
+  transactions: [],
+  totalPoints: 0,
+};
