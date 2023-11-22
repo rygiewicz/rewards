@@ -3,11 +3,41 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import TransactionList from './components/TransactionList';
+import PointList from './components/PointList';
+import MonthlyPoints from './components/MonthlyPoints';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    Component: App,
+    children: [
+      {
+        path: 'transactions',
+        Component: TransactionList,
+      },
+      {
+        path: 'points',
+        Component: PointList,
+      },
+      {
+        path: 'monthly',
+        Component: MonthlyPoints,
+      },
+      {
+        path: '*',
+        element: <div>404</div>,
+      },
+    ],
+  },
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>,
 );
 

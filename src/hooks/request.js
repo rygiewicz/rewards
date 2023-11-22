@@ -5,13 +5,15 @@ export const useRequest = (fetchFn) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+  function doFetch() {
     fetchFn().then((result) => {
       setData(result.data);
       setError(result.error);
       setLoading(false);
     });
-  }, []);
+  }
 
-  return { data, error, loading };
+  useEffect(doFetch, [fetchFn]);
+
+  return { data, error, loading, retry: doFetch };
 };

@@ -20,7 +20,7 @@ describe('useRequest', () => {
   it('should return data', async () => {
     const expectedJson = { name: 'John', age: 55 };
 
-    fetch.mockResponseOnce(delayedResponse(JSON.stringify(expectedJson)));
+    fetch.mockResponseOnce(JSON.stringify(expectedJson));
 
     const fetchFn = () => apiService.get('/test-request');
     const { result } = renderHook(() => useRequest(fetchFn));
@@ -35,7 +35,7 @@ describe('useRequest', () => {
   });
 
   it('should initially return loading true and then false', async () => {
-    fetch.mockResponseOnce(delayedResponse('{}'));
+    fetch.mockResponseOnce('{}');
 
     const fetchFn = () => apiService.get('/test-request');
     const { result } = renderHook(() => useRequest(fetchFn));
