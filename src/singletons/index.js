@@ -18,6 +18,6 @@ transactionsService.getTransactions = () => {
         error: null,
         data: adaptTransactionList(transactionListResponseMock),
       });
-    }, 2000);
+    }, 1000);
   });
 };
