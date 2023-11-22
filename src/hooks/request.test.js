@@ -5,7 +5,7 @@ import { createApiService } from '../services/api';
 const apiService = createApiService();
 
 describe('useRequest', () => {
-  it('should return the initial values for data, error and loading', async () => {
+  it('returns initial values for data, error and loading', async () => {
     fetch.mockResponseOnce(delayedResponse('{}'));
 
     const fetchFn = () => apiService.get('/test-request');
@@ -17,7 +17,7 @@ describe('useRequest', () => {
     expect(loading).toEqual(true);
   });
 
-  it('should return data', async () => {
+  it('returns data', async () => {
     const expectedJson = { name: 'John', age: 55 };
 
     fetch.mockResponseOnce(JSON.stringify(expectedJson));
@@ -34,7 +34,7 @@ describe('useRequest', () => {
     });
   });
 
-  it('should initially return loading true and then false', async () => {
+  it('initially returns loading true and then false', async () => {
     fetch.mockResponseOnce('{}');
 
     const fetchFn = () => apiService.get('/test-request');
@@ -50,7 +50,7 @@ describe('useRequest', () => {
     });
   });
 
-  it('should return an error', async () => {
+  it('returns an error', async () => {
     const expectedCode = apiService.defaultErrorCode;
     const expectedMessage = apiService.defaultErrorMessage;
 
@@ -65,5 +65,20 @@ describe('useRequest', () => {
       expect(error.code).toEqual(expectedCode);
       expect(error.message).toEqual(expectedMessage);
     });
+  });
+
+  it('allows to retry', async () => {
+    fetch.mockResponse(delayedResponse('{}'));
+
+    const fetchFn = jest.fn().mockImplementation(() => apiService.get('/test-request'));
+    const { result } = renderHook(() => useRequest(fetchFn));
+
+    expect(fetchFn).toHaveBeenCalledTimes(1);
+
+    const { retry } = result.current;
+
+    retry();
+
+    expect(fetchFn).toHaveBeenCalledTimes(2);
   });
 });
